@@ -1,21 +1,15 @@
 require 'support/command_line_helpers'
-require 'support/setup_and_teardown_helper'
-require 'support/fixture_helpers'
+require 'support/command_output'
+require 'support/knife_output_fixture'
+require 'support/test_cook'
 
 RSpec.configure do |config|
   config.include CommandLineHelpers
-  config.include FixtureHelpers
 
-  config.add_setting :cookbook_name, default: "supermarket-test-#{Time.now.to_i}"
-
-  config.before(:suite) do
-    helper = SetupAndTeardownHelper.new(RSpec.configuration.cookbook_name)
-    helper.setup!
-  end
+  config.add_setting :starting_time, default: Time.now.to_i.to_s
 
   config.after(:suite) do
-    helper = SetupAndTeardownHelper.new(RSpec.configuration.cookbook_name)
-    helper.teardown!
+    TestCook.cleanup
   end
 
 end
