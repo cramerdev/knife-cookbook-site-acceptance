@@ -10,7 +10,7 @@ RSpec.configure do |config|
 
   config.after(:suite) do
     TestCook.cleanup
-    TestCook.reset
+    TestCookbook.reset
   end
 
 end

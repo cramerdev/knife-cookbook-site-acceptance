@@ -7,7 +7,7 @@ module CommandLineHelpers
   end
 
   def run!(command)
-    run(command).error!
+    run(command).tap(&:error!)
   end
 
 end

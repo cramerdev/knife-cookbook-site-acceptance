@@ -6,7 +6,13 @@ class TestCook
 
   def self.create_cookbook(name = RSpec.configuration.starting_time)
     TestCookbook.new(name).tap do |cookbook|
-      unless cookbook.exists?
+      if cookbook.exists?
+        show = run "knife cookbook site show #{cookbook.name}"
+
+        if show.exitstatus != 0
+          share(cookbook.name)
+        end
+      else
         cookbook.create
 
         unshare(cookbook.name)
