@@ -9,7 +9,7 @@ class KnifeOutputFixture
     end
   end
 
-  def initialize(name, variables)
+  def initialize(name, variables = {})
     @name = name
     @scrubber = VolatileAttributeScrubber.new
     extend self.class.variables_module(variables)

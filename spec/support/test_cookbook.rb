@@ -4,9 +4,13 @@ class TestCookbook
   attr_reader :name, :version
   attr_writer :version
 
+  def self.reset
+    new(nil).save
+  end
+
   def initialize(unique_fragment)
     @base_name = 'supermarket-test'
-    @name = [@base_name, unique_fragment].join('-')
+    @name = [@base_name, unique_fragment].compact.join('-')
     @version = '0.1.0'
     @cookbooks_home = File.expand_path('./spec/fixtures/cookbooks')
   end
