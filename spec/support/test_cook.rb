@@ -49,6 +49,8 @@ class TestCook
         cookbook.destroy
       end
     end
+
+    downloads.each { |tarball| File.unlink(tarball) }
   end
 
   def self.cookbooks
@@ -57,6 +59,10 @@ class TestCook
     end.map do |full_name|
       TestCookbook.new(full_name.split('-').last)
     end
+  end
+
+  def self.downloads
+    Dir.glob('*.tar.gz')
   end
 
 end
