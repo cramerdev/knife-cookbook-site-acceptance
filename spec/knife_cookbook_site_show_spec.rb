@@ -13,8 +13,8 @@ describe 'knife cookbook site show COOKBOOK' do
     expect(command_output.signature).to eql(output_fixture.signature)
   end
 
-  it 'displays all versions of a published cookbook' do
-    name = Time.now.to_i + 1
+  it 'displays all versions of a published cookbook', focus: true do
+    name = "multi-version"
     cookbook = TestCook.create_cookbook(name)
     TestCook.publish_new_version(name, '0.2.0')
 

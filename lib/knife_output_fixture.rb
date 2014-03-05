@@ -1,4 +1,4 @@
-require 'support/volatile_attribute_scrubber'
+require 'volatile_attribute_scrubber'
 
 class KnifeOutputFixture
   def self.variables_module(variables)

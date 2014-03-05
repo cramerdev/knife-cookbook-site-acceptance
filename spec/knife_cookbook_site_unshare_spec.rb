@@ -11,7 +11,7 @@ describe 'knife cookbook site unshare' do
   end
 
   it 'exits with status 100 when trying to unshare a non-existent cookbook' do
-    cookbook = TestCookbook.new(Time.now.to_i)
+    cookbook = TestCookbook.new('non-existent')
     cookbook.create
 
     unshare = run "knife cookbook site unshare #{cookbook.name} -y"
@@ -20,7 +20,7 @@ describe 'knife cookbook site unshare' do
   end
 
   it 'shows an error when trying to unshare a non-existent cookbook' do
-    cookbook = TestCookbook.new(Time.now.to_i)
+    cookbook = TestCookbook.new('non-existent-round-two')
     cookbook.create
 
     unshare = run "knife cookbook site unshare #{cookbook.name} -y"

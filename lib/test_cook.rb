@@ -1,5 +1,5 @@
-require 'support/command_line_helpers'
-require 'support/test_cookbook'
+require 'command_line_helpers'
+require 'test_cookbook'
 
 class TestCook
   extend CommandLineHelpers
@@ -18,6 +18,8 @@ class TestCook
         unshare(cookbook.name)
         share(cookbook.name)
       end
+
+      cookbook.save
     end
   end
 
@@ -57,7 +59,7 @@ class TestCook
     Dir.entries('spec/fixtures/cookbooks').select do |entry|
       entry.start_with?('supermarket-test-')
     end.map do |full_name|
-      TestCookbook.new(full_name.split('-').last)
+      TestCookbook.new(full_name.split('supermarket-test-').last)
     end
   end
 

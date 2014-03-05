@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'knife cookbook site share' do
   it 'exits with status 0 when it succeeds' do
-    cookbook = TestCookbook.new(Time.now.to_i)
+    cookbook = TestCookbook.new('cool-new-cookbook')
     cookbook.create
 
     share = run "knife cookbook site share #{cookbook.name} Other"
